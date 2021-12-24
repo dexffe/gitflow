@@ -26,7 +26,6 @@ class Image(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-
 if __name__ == '__main__':
     pygame.init()
     size = width, height = 1200, 700
@@ -35,29 +34,30 @@ if __name__ == '__main__':
 
     all_sprites = pygame.sprite.Group()
 
-    Image(0, 0, 'Фон меню слева.jpg', all_sprites)
-    Image(400, 0, 'фон меню справа.jpg', all_sprites)
+    Fon_menu_left = Image(0, 0, 'Фон меню слева.jpg', all_sprites)
+    Fon_menu_right = Image(400, 0, 'фон меню справа.jpg', all_sprites)
+    Exit = Image(-100, 500, 'Выход.png', all_sprites)
+    Settings = Image(-100, 350, 'Настройки.png', all_sprites)
+    Levels = Image(-100, 200, 'Уровни.png', all_sprites)
+    New_game = Image(-100, 50, 'Новая игра.png', all_sprites)
 
-    '''---------------------------'''
-    img = [
-        'Выход.png',
-        'Настройки.png',
-        'Уровни.png',
-        'Новая игра.png'
-    ]
-    x, y = -100, 500  # Рисует кнопки на меню
-    for im in img:
-        Image(x, y, im, all_sprites)
-        y -= 150
-    '''---------------------------'''
+
 
     run = True
     while run:
-        # screen.fill('green', (0, 0, 400, 700))
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if pygame.Rect.collidepoint(Exit.rect, pygame.mouse.get_pos()):
+                    print('Exit')
+                if pygame.Rect.collidepoint(Settings.rect, pygame.mouse.get_pos()):
+                    print('Settings')
+                if pygame.Rect.collidepoint(Levels.rect, pygame.mouse.get_pos()):
+                    print('Levels')
+                if pygame.Rect.collidepoint(New_game.rect, pygame.mouse.get_pos()):
+                    print('New_game')
+
 
         all_sprites.draw(screen)
         pygame.display.flip()
