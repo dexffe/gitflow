@@ -36,10 +36,11 @@ if __name__ == '__main__':
 
     Fon_menu_left = Image(0, 0, 'Фон меню слева.jpg', all_sprites)
     Fon_menu_right = Image(400, 0, 'фон меню справа.jpg', all_sprites)
-    Exit = Image(-100, 500, 'Выход.png', all_sprites)
-    Settings = Image(-100, 350, 'Настройки.png', all_sprites)
-    Levels = Image(-100, 200, 'Уровни.png', all_sprites)
-    New_game = Image(-100, 50, 'Новая игра.png', all_sprites)
+
+    Exit = Image(90, 550, 'Выход.png', all_sprites)
+    Settings = Image(30, 370, 'Настройки.png', all_sprites)
+    Levels = Image(80, 220, 'Уровни.png', all_sprites)
+    New_game = Image(20, 70, 'Новая игра.png', all_sprites)
 
 
 
@@ -50,9 +51,10 @@ if __name__ == '__main__':
                 run = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if pygame.Rect.collidepoint(Exit.rect, pygame.mouse.get_pos()):
-                    print('Exit')
+                    run = False
                 if pygame.Rect.collidepoint(Settings.rect, pygame.mouse.get_pos()):
-                    print('Settings')
+                    Fon_settings = Image(400, 0, 'Фон настроек.jpg', all_sprites)
+                    Aim_tip = Image(300, -90, 'Тип прицела.png', all_sprites)
                 if pygame.Rect.collidepoint(Levels.rect, pygame.mouse.get_pos()):
                     print('Levels')
                 if pygame.Rect.collidepoint(New_game.rect, pygame.mouse.get_pos()):
