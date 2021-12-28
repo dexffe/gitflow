@@ -28,18 +28,24 @@ class Image(pygame.sprite.Sprite):
 
 
 def exit():
-    Image(300, 100, 'Вы действительно хотите выйти.png', 0, all_sprites)
-    Image(300, 150, 'да.png', -1, all_sprites)
-    Image(300, 200, 'нет.png', -1, all_sprites)
+    Image(450, 100, 'Вы действительно хотите выйти.png', 0, all_sprites)
+    Yes = Image(600, 230, 'да.jpg', 0, all_sprites)
+    No = Image(560, 410, 'нет.jpg', 0, all_sprites)
 
 
 def settings():
     Image(400, 0, 'Фон настроек.jpg', -1, all_sprites)
-    Image(300, -60, 'Тип прицела.png', -1, all_sprites)
+    Image(600, 20, 'прицелы.png', -1, all_sprites)
+    Image(480, 600, 'сбросить прогресс.png', -1, all_sprites)
 
 
-def coin():
+def levels():
     Image(400, 0, 'Фон уровней.jpg', -1, all_sprites)
+
+    Level_one = Image(450, 50, '1 уровень.png', -1, all_sprites)
+    Level_two = Image(450, 200, '2 уровень.png', -1, all_sprites)
+    Level_three = Image(450, 350, '3 уровень.png', -1, all_sprites)
+    Level_four = Image(450, 500, '4 уровень.png', -1, all_sprites)
 
     Coin_1_lvl1 = Image(650, 50, 'Монетка.png', -1, all_sprites)
     Coin_2_lvl1 = Image(750, 50, 'Монетка.png', -1, all_sprites)
@@ -68,8 +74,13 @@ def new_game():
     New_game = Image(20, 70, 'Новая игра.png', -1, all_sprites)
 
 
-
-
+def place(Place):
+    if Place == 'new_game':
+        return new_game()
+    elif Place == 'settings':
+        return settings()
+    elif Place == 'levels':
+        return levels()
 
 
 if __name__ == '__main__':
@@ -88,30 +99,37 @@ if __name__ == '__main__':
     Levels = Image(80, 220, 'Уровни.png', -1, all_sprites)
     New_game = Image(20, 70, 'Новая игра.png', -1, all_sprites)
 
-    lvl = False
+    Place = 'new_game'
+
     run = True
-    all = True
+    active = True
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if pygame.Rect.collidepoint(Exit.rect, pygame.mouse.get_pos()) and all:
-                    all = False
+                if pygame.Rect.collidepoint(Exit.rect, pygame.mouse.get_pos()) and active:
+                    active = False
                     exit()
-
-                if pygame.Rect.collidepoint(Settings.rect, pygame. mouse.get_pos()) and all:
+                    Yes = Image(600, 230, 'да.jpg', 0, all_sprites)
+                    No = Image(560, 410, 'нет.jpg', 0, all_sprites)
+                if pygame.Rect.collidepoint(Settings.rect, pygame.mouse.get_pos()) and active:
                     settings()
-
-                if pygame.Rect.collidepoint(Levels.rect, pygame.mouse.get_pos()) and all:
+                    Place = 'settings'
+                    progress = Image(480, 600, 'сбросить прогресс.png', -1, all_sprites)
+                if pygame.Rect.collidepoint(Levels.rect, pygame.mouse.get_pos()) and active:
                     lvl = True
-                    coin()
+                    levels()
                     Level_one = Image(450, 50, '1 уровень.png', -1, all_sprites)
                     Level_two = Image(450, 200, '2 уровень.png', -1, all_sprites)
                     Level_three = Image(450, 350, '3 уровень.png', -1, all_sprites)
                     Level_four = Image(450, 500, '4 уровень.png', -1, all_sprites)
+                    Place = 'levels'
+                if pygame.Rect.collidepoint(New_game.rect, pygame.mouse.get_pos()) and active:
+                    new_game()
+                    Place = 'new_game'
 
-                if lvl and all:
+                if Place == 'levels' and active:
                     if pygame.Rect.collidepoint(Level_one.rect, pygame.mouse.get_pos()):
                         print('Level_one')
                     if pygame.Rect.collidepoint(Level_two.rect, pygame.mouse.get_pos()):
@@ -120,10 +138,15 @@ if __name__ == '__main__':
                         print('Level_three')
                     if pygame.Rect.collidepoint(Level_four.rect, pygame.mouse.get_pos()):
                         print('Level_four')
-
-                if pygame.Rect.collidepoint(New_game.rect, pygame.mouse.get_pos()) and all:
-                    new_game()
-
+                if Place == 'settings':
+                    if pygame.Rect.collidepoint(progress.rect, pygame.mouse.get_pos()):
+                        print('сбросить прогресс')
+                if active is False:
+                    if pygame.Rect.collidepoint(Yes.rect, pygame.mouse.get_pos()):
+                        run = False
+                    if pygame.Rect.collidepoint(No.rect, pygame.mouse.get_pos()):
+                        active = True
+                        place(Place)
         all_sprites.draw(screen)
         pygame.display.flip()
 
