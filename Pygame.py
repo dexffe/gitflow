@@ -35,7 +35,9 @@ def exit():
 
 def settings():
     Image(400, 0, 'Фон настроек.jpg', -1, all_sprites)
+
     Image(600, 20, 'прицелы.png', -1, all_sprites)
+
     Image(480, 600, 'сбросить прогресс.png', -1, all_sprites)
 
 
@@ -117,6 +119,22 @@ if __name__ == '__main__':
                     settings()
                     Place = 'settings'
                     progress = Image(480, 600, 'сбросить прогресс.png', -1, all_sprites)
+
+                    cross_black = Image(580, 150, 'cross_black.jpg', 0, all_sprites)
+                    cross_blue = Image(580, 250, 'cross_blue.jpg', 0, all_sprites)
+                    cross_red = Image(580, 350, 'cross_red.jpg', 0, all_sprites)
+                    cross_yellow = Image(580, 450, 'cross_yellow.jpg', 0, all_sprites)
+
+                    cross_with_point_black = Image(770, 150, 'cross_with_point_black.jpg', 0, all_sprites)
+                    cross_with_point_blue = Image(770, 250, 'cross_with_point_blue.jpg', 0, all_sprites)
+                    cross_with_point_red = Image(770, 350, 'cross_with_point_red.jpg', 0, all_sprites)
+                    cross_with_point_yellow = Image(770, 450, 'cross_with_point_yellow.jpg', 0, all_sprites)
+
+                    mini_cross_black = Image(950, 150, 'mini_cross_black.jpg', 0, all_sprites)
+                    mini_cross_blue = Image(950, 250, 'mini_cross_blue.jpg', 0, all_sprites)
+                    mini_cross_red = Image(950, 350, 'mini_cross_red.jpg', 0, all_sprites)
+                    mini_cross_yellow = Image(950, 450, 'mini_cross_yellow.jpg', 0, all_sprites)
+
                 if pygame.Rect.collidepoint(Levels.rect, pygame.mouse.get_pos()) and active:
                     lvl = True
                     levels()
@@ -139,6 +157,33 @@ if __name__ == '__main__':
                     if pygame.Rect.collidepoint(Level_four.rect, pygame.mouse.get_pos()):
                         print('Level_four')
                 if Place == 'settings':
+                    if pygame.Rect.collidepoint(cross_black.rect, pygame.mouse.get_pos()):
+                        print('cross_black')
+                    if pygame.Rect.collidepoint(cross_blue.rect, pygame.mouse.get_pos()):
+                        print('cross_blue')
+                    if pygame.Rect.collidepoint(cross_red.rect, pygame.mouse.get_pos()):
+                        print('cross_red')
+                    if pygame.Rect.collidepoint(cross_yellow.rect, pygame.mouse.get_pos()):
+                        print('cross_yellow')
+
+                    if pygame.Rect.collidepoint(cross_with_point_black.rect, pygame.mouse.get_pos()):
+                        print('cross_with_point_black')
+                    if pygame.Rect.collidepoint(cross_with_point_blue.rect, pygame.mouse.get_pos()):
+                        print('cross_with_point_blue')
+                    if pygame.Rect.collidepoint(cross_with_point_red.rect, pygame.mouse.get_pos()):
+                        print('cross_with_point_red')
+                    if pygame.Rect.collidepoint(cross_with_point_yellow.rect, pygame.mouse.get_pos()):
+                        print('cross_with_point_yellow')
+
+                    if pygame.Rect.collidepoint(mini_cross_black.rect, pygame.mouse.get_pos()):
+                        print('mini_cross_black')
+                    if pygame.Rect.collidepoint(mini_cross_blue.rect, pygame.mouse.get_pos()):
+                        print('mini_cross_blue')
+                    if pygame.Rect.collidepoint(mini_cross_red.rect, pygame.mouse.get_pos()):
+                        print('mini_cross_red')
+                    if pygame.Rect.collidepoint(mini_cross_yellow.rect, pygame.mouse.get_pos()):
+                        print('mini_cross_yellow')
+
                     if pygame.Rect.collidepoint(progress.rect, pygame.mouse.get_pos()):
                         print('сбросить прогресс')
                 if active is False:
