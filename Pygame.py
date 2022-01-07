@@ -1,6 +1,12 @@
 import os
 import pygame
 
+with open("new_player.txt", "w") as file:
+    file.write("True")    # Если игрок зашел в первый раз то True
+
+with open("settings.txt", "w") as file:
+    file.write("cross_black")    # Тип прицела
+
 
 def load_image(name, color_key=None):
     full_name = os.path.join('картинки проекта', name)
@@ -37,6 +43,22 @@ def settings():
     Image(400, 0, 'Фон настроек.jpg', -1, all_sprites)
 
     Image(600, 20, 'прицелы.png', -1, all_sprites)
+    Image(525, 110, 'белый.jpg', 0, all_sprites)
+
+    cross_black = Image(580, 150, 'cross_black.jpg', 0, all_sprites)
+    cross_blue = Image(580, 250, 'cross_blue.jpg', 0, all_sprites)
+    cross_red = Image(580, 350, 'cross_red.jpg', 0, all_sprites)
+    cross_yellow = Image(580, 450, 'cross_yellow.jpg', 0, all_sprites)
+
+    cross_with_point_black = Image(770, 150, 'cross_with_point_black.jpg', 0, all_sprites)
+    cross_with_point_blue = Image(770, 250, 'cross_with_point_blue.jpg', 0, all_sprites)
+    cross_with_point_red = Image(770, 350, 'cross_with_point_red.jpg', 0, all_sprites)
+    cross_with_point_yellow = Image(770, 450, 'cross_with_point_yellow.jpg', 0, all_sprites)
+
+    mini_cross_black = Image(950, 150, 'mini_cross_black.jpg', 0, all_sprites)
+    mini_cross_blue = Image(950, 250, 'mini_cross_blue.jpg', 0, all_sprites)
+    mini_cross_red = Image(950, 350, 'mini_cross_red.jpg', 0, all_sprites)
+    mini_cross_yellow = Image(950, 450, 'mini_cross_yellow.jpg', 0, all_sprites)
 
     Image(480, 600, 'сбросить прогресс.png', -1, all_sprites)
 
@@ -49,31 +71,31 @@ def levels():
     Level_three = Image(450, 350, '3 уровень.png', -1, all_sprites)
     Level_four = Image(450, 500, '4 уровень.png', -1, all_sprites)
 
-    Coin_1_lvl1 = Image(650, 50, 'Монетка.png', -1, all_sprites)
-    Coin_2_lvl1 = Image(750, 50, 'Монетка.png', -1, all_sprites)
-    Coin_3_lvl1 = Image(850, 50, 'Монетка.png', -1, all_sprites)
+    Coin_1_lvl1 = Image(650, 50, 'Неактивная монетка.png', -1, all_sprites)
+    Coin_2_lvl1 = Image(750, 50, 'Неактивная монетка.png', -1, all_sprites)
+    Coin_3_lvl1 = Image(850, 50, 'Неактивная монетка.png', -1, all_sprites)
 
-    Coin_1_lvl2 = Image(650, 200, 'Монетка.png', -1, all_sprites)
-    Coin_2_lvl2 = Image(750, 200, 'Монетка.png', -1, all_sprites)
-    Coin_3_lvl2 = Image(850, 200, 'Монетка.png', -1, all_sprites)
+    Coin_1_lvl2 = Image(650, 200, 'Неактивная монетка.png', -1, all_sprites)
+    Coin_2_lvl2 = Image(750, 200, 'Неактивная монетка.png', -1, all_sprites)
+    Coin_3_lvl2 = Image(850, 200, 'Неактивная монетка.png', -1, all_sprites)
 
-    Coin_1_lvl3 = Image(650, 350, 'Монетка.png', -1, all_sprites)
-    Coin_2_lvl3 = Image(750, 350, 'Монетка.png', -1, all_sprites)
-    Coin_3_lvl3 = Image(850, 350, 'Монетка.png', -1, all_sprites)
+    Coin_1_lvl3 = Image(650, 350, 'Неактивная монетка.png', -1, all_sprites)
+    Coin_2_lvl3 = Image(750, 350, 'Неактивная монетка.png', -1, all_sprites)
+    Coin_3_lvl3 = Image(850, 350, 'Неактивная монетка.png', -1, all_sprites)
 
-    Coin_1_lvl4 = Image(650, 500, 'Монетка.png', -1, all_sprites)
-    Coin_2_lvl4 = Image(750, 500, 'Монетка.png', -1, all_sprites)
+    Coin_1_lvl4 = Image(650, 500, 'Неактивная монетка.png', -1, all_sprites)
+    Coin_2_lvl4 = Image(750, 500, 'Неактивная монетка.png', -1, all_sprites)
     Coin_3_lvl4 = Image(850, 500, 'Неактивная монетка.png', -1, all_sprites)
 
 
 def new_game():
     Image(0, 0, 'Фон меню слева.jpg', -1, all_sprites)
-    Image(400, 0, 'фон меню справа.jpg', -1, all_sprites)
-
     Exit = Image(90, 550, 'Выход.png', -1, all_sprites)
     Settings = Image(30, 370, 'Настройки.png', -1, all_sprites)
     Levels = Image(80, 220, 'Уровни.png', -1, all_sprites)
     New_game = Image(20, 70, 'Новая игра.png', -1, all_sprites)
+
+    print('start play (1 level)')
 
 
 def place(Place):
@@ -95,6 +117,7 @@ if __name__ == '__main__':
 
     Fon_menu_left = Image(0, 0, 'Фон меню слева.jpg', -1, all_sprites)
     Fon_menu_right = Image(400, 0, 'фон меню справа.jpg', -1, all_sprites)
+    x, y = 563, 130
 
     Exit = Image(90, 550, 'Выход.png', -1, all_sprites)
     Settings = Image(30, 370, 'Настройки.png', -1, all_sprites)
@@ -157,32 +180,50 @@ if __name__ == '__main__':
                     if pygame.Rect.collidepoint(Level_four.rect, pygame.mouse.get_pos()):
                         print('Level_four')
                 if Place == 'settings':
+                    tupe = 'cross_black'
                     if pygame.Rect.collidepoint(cross_black.rect, pygame.mouse.get_pos()):
-                        print('cross_black')
+                        tupe = 'cross_black'
+                        x, y = 563, 130
                     if pygame.Rect.collidepoint(cross_blue.rect, pygame.mouse.get_pos()):
-                        print('cross_blue')
+                        tupe = 'cross_blue'
+                        x, y = 561, 230
                     if pygame.Rect.collidepoint(cross_red.rect, pygame.mouse.get_pos()):
-                        print('cross_red')
+                        tupe = 'cross_red'
+                        x, y = 561, 330
                     if pygame.Rect.collidepoint(cross_yellow.rect, pygame.mouse.get_pos()):
-                        print('cross_yellow')
+                        tupe = 'cross_yellow'
+                        x, y = 561, 430
 
                     if pygame.Rect.collidepoint(cross_with_point_black.rect, pygame.mouse.get_pos()):
-                        print('cross_with_point_black')
+                        tupe = 'cross_with_point_black'
+                        x, y = 754, 132
                     if pygame.Rect.collidepoint(cross_with_point_blue.rect, pygame.mouse.get_pos()):
-                        print('cross_with_point_blue')
+                        tupe = 'cross_with_point_blue'
+                        x, y = 749, 230
                     if pygame.Rect.collidepoint(cross_with_point_red.rect, pygame.mouse.get_pos()):
-                        print('cross_with_point_red')
+                        tupe = 'cross_with_point_red'
+                        x, y = 752, 330
                     if pygame.Rect.collidepoint(cross_with_point_yellow.rect, pygame.mouse.get_pos()):
-                        print('cross_with_point_yellow')
+                        tupe = 'cross_with_point_yellow'
+                        x, y = 754, 430
 
                     if pygame.Rect.collidepoint(mini_cross_black.rect, pygame.mouse.get_pos()):
-                        print('mini_cross_black')
+                        tupe = 'mini_cross_black'
+                        x, y = 925, 125
                     if pygame.Rect.collidepoint(mini_cross_blue.rect, pygame.mouse.get_pos()):
-                        print('mini_cross_blue')
+                        tupe = 'mini_cross_blue'
+                        x, y = 925, 225
                     if pygame.Rect.collidepoint(mini_cross_red.rect, pygame.mouse.get_pos()):
-                        print('mini_cross_red')
+                        tupe = 'mini_cross_red'
+                        x, y = 922, 323
                     if pygame.Rect.collidepoint(mini_cross_yellow.rect, pygame.mouse.get_pos()):
-                        print('mini_cross_yellow')
+                        tupe = 'mini_cross_yellow'
+                        x, y = 925, 425
+                    settings()
+                    Image(x, y, 'выбранный прицел.png', -1, all_sprites)
+
+                    with open("settings.txt", "w") as file:
+                        file.write(tupe)  # Тип прицела
 
                     if pygame.Rect.collidepoint(progress.rect, pygame.mouse.get_pos()):
                         print('сбросить прогресс')
@@ -194,5 +235,4 @@ if __name__ == '__main__':
                         place(Place)
         all_sprites.draw(screen)
         pygame.display.flip()
-
     pygame.quit()
