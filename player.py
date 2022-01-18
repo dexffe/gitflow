@@ -1,25 +1,25 @@
 from pygame import *
-import pyganim
+import animation
 import os
 
 WIDTH = 22
 HEIGHT = 32
 file = os.path.dirname(__file__)
 
-ANIMATION_RIGHT = [('%s/персонаж/r1.png' % file),
-                   ('%s/персонаж/r2.png' % file),
-                   ('%s/персонаж/r3.png' % file),
-                   ('%s/персонаж/r4.png' % file),
-                   ('%s/персонаж/r5.png' % file)]
-ANIMATION_LEFT = [('%s/персонаж/l1.png' % file),
-                  ('%s/персонаж/l2.png' % file),
-                  ('%s/персонаж/l3.png' % file),
-                  ('%s/персонаж/l4.png' % file),
-                  ('%s/персонаж/l5.png' % file)]
-ANIMATION_JUMP_LEFT = [('%s/персонаж/jl.png' % file, 0.1)]
-ANIMATION_JUMP_RIGHT = [('%s/персонаж/jr.png' % file, 0.1)]
-ANIMATION_JUMP = [('%s/персонаж/j.png' % file, 0.1)]
-ANIMATION_STAY = [('%s/персонаж/s.png' % file, 0.1)]
+ANIMATION_RIGHT = ['%s/персонаж/r1.png' % file,
+                   '%s/персонаж/r2.png' % file,
+                   '%s/персонаж/r3.png' % file,
+                   '%s/персонаж/r4.png' % file,
+                   '%s/персонаж/r5.png' % file]
+ANIMATION_LEFT = ['%s/персонаж/l1.png' % file,
+                  '%s/персонаж/l2.png' % file,
+                  '%s/персонаж/l3.png' % file,
+                  '%s/персонаж/l4.png' % file,
+                  '%s/персонаж/l5.png' % file]
+ANIMATION_JUMP_LEFT = ['%s/персонаж/jl.png' % file]
+ANIMATION_JUMP_RIGHT = ['%s/персонаж/jr.png' % file]
+ANIMATION_JUMP = ['%s/персонаж/j.png' % file]
+ANIMATION_STAY = ['%s/персонаж/s.png' % file]
 
 
 class Player(sprite.Sprite):
@@ -33,56 +33,44 @@ class Player(sprite.Sprite):
         self.image = Surface((WIDTH, HEIGHT))
         self.rect = Rect(x, y, WIDTH, HEIGHT)
 
-        s1 = []
-        for i in ANIMATION_RIGHT:
-            s1.append((i, 0.1))
-        self.Anim_Right = pyganim.PygAnimation(s1)
-        self.Anim_Right.play()
+        self.Anim_Right = animation.Anim(ANIMATION_RIGHT)
 
-        s1 = []
-        for i in ANIMATION_LEFT:
-            s1.append((i, 0.1))
-        self.Anim_Left = pyganim.PygAnimation(s1)
-        self.Anim_Left.play()
+        self.Anim_Left = animation.Anim(ANIMATION_LEFT)
 
-        self.Anim_Stay = pyganim.PygAnimation(ANIMATION_STAY)
+        self.Anim_Stay = animation.Anim(ANIMATION_STAY)
         self.Anim_Stay.play()
-        self.Anim_Stay.blit(self.image, (0, 0))
 
-        self.Anim_Jump_Left = pyganim.PygAnimation(ANIMATION_JUMP_LEFT)
-        self.Anim_Jump_Left.play()
+        self.Anim_Jump_Left = animation.Anim(ANIMATION_JUMP_LEFT)
 
-        self.Anim_Jump_Right = pyganim.PygAnimation(ANIMATION_JUMP_RIGHT)
-        self.Anim_Jump_Right.play()
+        self.Anim_Jump_Right = animation.Anim(ANIMATION_JUMP_RIGHT)
 
-        self.Anim_Jump = pyganim.PygAnimation(ANIMATION_JUMP)
-        self.Anim_Jump.play()
+        self.Anim_Jump = animation.Anim(ANIMATION_JUMP)
 
     def update(self, left, right, up, platforms):
         if up:
             if self.on_ground:
                 self.y = -10
             self.image.fill('black')
-            self.Anim_Jump.blit(self.image, (0, 0))
+            self.Anim_Jump.play()
         if left:
             self.x = -7
             self.image.fill('black')
             if up:
-                self.Anim_Jump_Left.blit(self.image, (0, 0))
+                self.Anim_Jump_Left.play()
             else:
-                self.Anim_Left.blit(self.image, (0, 0))
+                self.Anim_Left.play()
         if right:
             self.x = 7
             self.image.fill('black')
             if up:
-                self.Anim_Jump_Right.blit(self.image, (0, 0))
+                self.Anim_Jump_Right.play()
             else:
-                self.Anim_Right.blit(self.image, (0, 0))
+                self.Anim_Right.play()
         if not (left or right):
             self.x = 0
             if not up:
                 self.image.fill('black')
-                self.Anim_Stay.blit(self.image, (0, 0))
+                self.Anim_Stay.play()
         if not self.on_ground:
             self.y += 0.35
 

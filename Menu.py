@@ -1,11 +1,9 @@
 import os
 import pygame
-
-with open("new_player.txt", "w") as file:
-    file.write("True")    # Если игрок зашел в первый раз то True
+from main import *
 
 with open("settings.txt", "w") as file:
-    file.write("cross_black")    # Тип прицела
+    file.write("cross_black")
 
 
 def load_image(name, color_key=None):
@@ -35,8 +33,8 @@ class Image(pygame.sprite.Sprite):
 
 def exit():
     Image(450, 100, 'Вы действительно хотите выйти.png', 0, all_sprites)
-    Yes = Image(600, 230, 'да.jpg', 0, all_sprites)
-    No = Image(560, 410, 'нет.jpg', 0, all_sprites)
+    Image(600, 230, 'да.jpg', 0, all_sprites)
+    Image(560, 410, 'нет.jpg', 0, all_sprites)
 
 
 def settings():
@@ -71,11 +69,12 @@ def levels():
 
 def new_game():
     Image(0, 0, 'Фон меню слева.jpg', -1, all_sprites)
-    Exit = Image(90, 550, 'Выход.png', -1, all_sprites)
-    Settings = Image(30, 370, 'Настройки.png', -1, all_sprites)
-    Levels = Image(80, 220, 'Уровни.png', -1, all_sprites)
-    New_game = Image(20, 70, 'Новая игра.png', -1, all_sprites)
-    Image(400, 0, 'Фон меню справа.jpg', -1, all_sprites)
+    Image(90, 550, 'Выход.png', -1, all_sprites)
+    Image(30, 370, 'Настройки.png', -1, all_sprites)
+    Image(80, 220, 'Уровни.png', -1, all_sprites)
+    Image(20, 70, 'Новая игра.png', -1, all_sprites)
+    Image(400, 0, 'фон меню справа.jpg', -1, all_sprites)
+
 
 
 def place(Place):
@@ -132,23 +131,23 @@ if __name__ == '__main__':
                     Place = 'levels'
                 if pygame.Rect.collidepoint(New_game.rect, pygame.mouse.get_pos()) and active:
                     new_game()
-                    Place = 'new_game'
+                    main()
 
                 if Place == 'levels' and active:
                     if pygame.Rect.collidepoint(Level_one.rect, pygame.mouse.get_pos()):
-                        print('Level_one')
+                        main('level_1')
                     if pygame.Rect.collidepoint(Level_two.rect, pygame.mouse.get_pos()):
-                        print('Level_two')
+                        main('level_2')
                     if pygame.Rect.collidepoint(Level_three.rect, pygame.mouse.get_pos()):
-                        print('Level_three')
+                        main('level_3')
                     if pygame.Rect.collidepoint(Level_four.rect, pygame.mouse.get_pos()):
-                        print('Level_four')
+                        main('level_4')
                 if Place == 'settings':
                     if pygame.Rect.collidepoint(progress.rect, pygame.mouse.get_pos()):
                         print('сбросить прогресс')
                 if active is False:
                     if pygame.Rect.collidepoint(Yes.rect, pygame.mouse.get_pos()):
-                        run = False
+                        sys.exit()
                     if pygame.Rect.collidepoint(No.rect, pygame.mouse.get_pos()):
                         active = True
                         place(Place)
