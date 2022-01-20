@@ -197,9 +197,6 @@ def main(lvl='level_1'):
                 except UnboundLocalError:
                     pass
 
-
-
-
         screen.fill('red')
 
         hero.update(left, right, up, platforms, moneys, stop_lvl)
