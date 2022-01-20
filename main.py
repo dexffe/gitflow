@@ -1,7 +1,16 @@
-import sys
 import pygame
+import sys
 from player import *
 from blocks import *
+
+
+class Image(pygame.sprite.Sprite):
+    def __init__(self, x, y, img, fon, *group):
+        super().__init__(*group)
+        self.image = Menu.load_image(img, fon)
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
 
 
 class Camera:
@@ -29,87 +38,58 @@ def camera_configure(camera, target_rect):
     return pygame.Rect(left, top, width, height)
 
 
+def exit_level():
+    global EXIT
+    EXIT = True
+
+
 def main(lvl='level_1'):
     pygame.init()
     size = width, height = 1200, 700
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption("...")
 
-    hero = Player(1100, 700)
+    hero = Player(100, 100)
     left = False
     right = False
     up = False
 
     all_sprites = pygame.sprite.Group()
     platforms = []
+    moneys = []
+    stop_lvl = []
 
     all_sprites.add(hero)
 
     level_1 = [
-        "-----------------------------------------",
-        "-                                       -",
-        "- m                                     -",
-        "--------                                e",
-        "-                                    ----",
-        "-                -----               ----",
-        "-                -----                  -",
-        "-                                       -",
-        "-      ----                             -",
-        "-      ----                 ----        -",
-        "-                           ----        -",
-        "-                                       -",
-        "-                ----                   -",
-        "-                ----                   -",
-        "-                                       -",
-        "-     ----                             m-",
-        "-     ----                           ----",
-        "-                                   -----",
-        "-                                       -",
-        "-           ----                        -",
-        "-           ----                        -",
-        "-                   ----                -",
-        "-m                    ----              -",
-        "-----------------------------------------"]
+        "-------------------------------------",
+        "- m                                 -",
+        "-                                   -",
+        "--------                            e s-",
+        "-                  s             ------",
+        "-                -----           ----",
+        "-                -----              -",
+        "-                                   -",
+        "-      ----                         -",
+        "-      ----                ----     -",
+        "-                          ----     -",
+        "-                                   -",
+        "--                ----              -",
+        "--                ----              -",
+        "-                                   -",
+        "-     ----                         m-",
+        "-     ----                       ----",
+        "-                               -----",
+        "-                                   -",
+        "-           ----                    -",
+        "-           ----                    -",
+        "-                   ----            -",
+        "-m                    ----          -",
+        "-------------------------------------"]
     level_2 = [
-        "-----------------------------------------",
-        "em                                     m-",
-        "----                                    -",
-        "-                                   --  -",
-        "-                                       -",
-        "- ---                         ---       -",
-        "-                             ---       -",
-        "-                                       -",
-        "---                                     -",
-        "-                                       -",
-        "-                             ---       -",
-        "-                             ---       -",
-        "- ----                                  -",
-        "-                                    ----",
-        "-                                       -",
-        "-              -----                    -",
-        "-                                       -",
-        "-                                 -     -",
-        "-                              ----     -",
-        "-         ---                           -",
-        "-                                       -",
-        "-                                       -",
-        "-                                       -",
-        "-                                       -",
-        "-              ----                     -",
-        "-              -m -                     -",
-        "-              -- -                     -",
-        "-           ----- ----                  -",
-        "-           --    ----                  -",
-        "-           -- -------                  -",
-        "-        ----- ----------               -",
-        "-        -----         --               -",
-        "-     ---------------- --               -",
-        "-                      ----             -",
-        "-----------------------------------------"]
-    level_3 = [
         "------------------------------------------",
-        "-     m      --           m--m           e",
-        "-            --            --            -",
+        "-     m      --   m        --m           e s-",
+        "-            --            --            ---",
         "-            --         -----   -        -",
         "-            --         -----            -",
         "-            --         -----        -   -",
@@ -149,6 +129,7 @@ def main(lvl='level_1'):
         "-                                        -",
         "-                                        -",
         "------------------------------------------"]
+    level_3 = []
     level_4 = []
     if lvl == 'level_1':
         level = level_1
@@ -170,10 +151,13 @@ def main(lvl='level_1'):
                 platforms.append(platforma)
             elif col == "m":
                 money = Money(x, y)
-                all_sprites.add(money)
+                moneys.append(money)
             elif col == "e":
                 exit = Exit(x, y)
                 all_sprites.add(exit)
+            elif col == "s":
+                stop = Stop(x, y)
+                stop_lvl.append(stop)
 
             x += BLOCK_WIDTH
         y += BLOCK_HEIGHT
@@ -201,13 +185,31 @@ def main(lvl='level_1'):
                 right = False
             if event.type == KEYUP and event.key == K_LEFT:
                 left = False
+            if EXIT:
+                left = False
+                right = False
+                up = False
+                exit_lvl = Image(270, 150, 'фон меню после уровня.png', -1, all_sprites)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                try:
+                    if pygame.Rect.collidepoint(exit_lvl.rect, pygame.mouse.get_pos()):
+                        print(1)
+                except UnboundLocalError:
+                    pass
+
+
+
 
         screen.fill('red')
 
-        hero.update(left, right, up, platforms)
+        hero.update(left, right, up, platforms, moneys, stop_lvl)
 
         camera.update(hero)
         for i in all_sprites:
+            screen.blit(i.image, camera.apply(i))
+        for i in moneys:
+            screen.blit(i.image, camera.apply(i))
+        for i in stop_lvl:
             screen.blit(i.image, camera.apply(i))
 
         pygame.display.update()

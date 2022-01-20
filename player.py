@@ -1,4 +1,9 @@
+import pygame
 from pygame import *
+from main import *
+from Menu import *
+import Menu
+import main
 import animation
 import os
 
@@ -46,7 +51,7 @@ class Player(sprite.Sprite):
 
         self.Anim_Jump = animation.Anim(ANIMATION_JUMP)
 
-    def update(self, left, right, up, platforms):
+    def update(self, left, right, up, platforms, moneys, stop_lvl):
         if up:
             if self.on_ground:
                 self.y = -10
@@ -80,6 +85,8 @@ class Player(sprite.Sprite):
 
         self.rect.x += self.x
         self.collide(self.x, 0, platforms)
+        self.money(moneys)
+        self.stop(stop_lvl)
 
     def collide(self, x, y, platforms):
         for i in platforms:
@@ -95,3 +102,15 @@ class Player(sprite.Sprite):
                 if y < 0:
                     self.rect.top = i.rect.bottom
                     self.y = 0
+
+    def money(self, moneys):
+        for i in moneys:
+            if sprite.collide_rect(self, i):
+                Menu.count_money(1)
+                moneys.remove(i)
+
+    def stop(self, stop_lvl):
+        for i in stop_lvl:
+            if sprite.collide_rect(self, i):
+                main.exit_level()
+

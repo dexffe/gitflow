@@ -1,6 +1,9 @@
-import os
-import pygame
 from main import *
+import os
+
+COUNT_MONEY = 0
+EXIT = False
+
 
 with open("settings.txt", "w") as file:
     file.write("cross_black")
@@ -20,6 +23,11 @@ def load_image(name, color_key=None):
     else:
         image = image.convert_alpha()
     return image
+
+
+def count_money(number):
+    global COUNT_MONEY
+    COUNT_MONEY += number
 
 
 class Image(pygame.sprite.Sprite):
@@ -74,7 +82,6 @@ def new_game():
     Image(80, 220, 'Уровни.png', -1, all_sprites)
     Image(20, 70, 'Новая игра.png', -1, all_sprites)
     Image(400, 0, 'фон меню справа.jpg', -1, all_sprites)
-
 
 
 def place(Place):
