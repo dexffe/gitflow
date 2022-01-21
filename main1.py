@@ -67,7 +67,6 @@ def main1(lvl=nums_lvl[Menu.COUNT_LVL], number_lvl=num_lvl[Menu.COUNT_LVL]):
     left = False
     right = False
     up = False
-
     all_sprites = pygame.sprite.Group()
     platforms = []
     moneys = []
@@ -216,7 +215,6 @@ def main1(lvl=nums_lvl[Menu.COUNT_LVL], number_lvl=num_lvl[Menu.COUNT_LVL]):
     level_height = len(level) * BLOCK_HEIGHT
 
     camera = Camera(camera_configure, level_width, level_height)
-
 
     while True:
         time.tick(60)

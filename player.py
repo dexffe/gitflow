@@ -11,7 +11,7 @@ WIDTH = 22
 HEIGHT = 32
 file = os.path.dirname(__file__)
 
-ANIMATION_RIGHT = ['%s/персонаж/r1.png' % file,
+ANIMATION_RIGHT = [load_image('r1.png'),
                    '%s/персонаж/r2.png' % file,
                    '%s/персонаж/r3.png' % file,
                    '%s/персонаж/r4.png' % file,
