@@ -93,7 +93,7 @@ def place(Place):
         return levels()
 
 
-if __name__ == '__main__':
+def main():
     pygame.init()
     size = width, height = 1200, 700
     screen = pygame.display.set_mode(size)
@@ -142,13 +142,13 @@ if __name__ == '__main__':
 
                 if Place == 'levels' and active:
                     if pygame.Rect.collidepoint(Level_one.rect, pygame.mouse.get_pos()):
-                        main('level_1')
+                        main()
                     if pygame.Rect.collidepoint(Level_two.rect, pygame.mouse.get_pos()):
-                        main('level_2')
+                        main('level_2', '2.png')
                     if pygame.Rect.collidepoint(Level_three.rect, pygame.mouse.get_pos()):
-                        main('level_3')
+                        main('level_3', '3.png')
                     if pygame.Rect.collidepoint(Level_four.rect, pygame.mouse.get_pos()):
-                        main('level_4')
+                        main('level_4', '4.png')
                 if Place == 'settings':
                     if pygame.Rect.collidepoint(progress.rect, pygame.mouse.get_pos()):
                         print('сбросить прогресс')
@@ -161,3 +161,7 @@ if __name__ == '__main__':
         all_sprites.draw(screen)
         pygame.display.flip()
     pygame.quit()
+
+
+if __name__ == '__main__':
+    main()

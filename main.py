@@ -1,5 +1,7 @@
 import pygame
 import sys
+
+import Menu
 from player import *
 from blocks import *
 
@@ -14,9 +16,9 @@ class Image(pygame.sprite.Sprite):
 
 
 class Camera:
-    def __init__(self, camera_configure, width, height):
+    def __init__(self, camera_configure, w, h):
         self.camera_configure = camera_configure
-        self.state = pygame.Rect(0, 0, width, height)
+        self.state = pygame.Rect(0, 0, w, h)
 
     def apply(self, target):
         return target.rect.move(self.state.topleft)
@@ -43,7 +45,7 @@ def exit_level():
     EXIT = True
 
 
-def main(lvl='level_1'):
+def main(lvl='level_1', number_lvl='1.png'):
     pygame.init()
     size = width, height = 1200, 700
     screen = pygame.display.set_mode(size)
@@ -87,6 +89,42 @@ def main(lvl='level_1'):
         "-m                    ----          -",
         "-------------------------------------"]
     level_2 = [
+        "-----------------------------------------",
+        "em                                     m-",
+        "----                                    -",
+        "-                                   --  -",
+        "-                                       -",
+        "- ---                         ---       -",
+        "-                             ---       -",
+        "-                                       -",
+        "---                                     -",
+        "-                                       -",
+        "-                             ---       -",
+        "-                             ---       -",
+        "- ----                                  -",
+        "-                                    ----",
+        "-                                       -",
+        "-              -----                    -",
+        "-                                       -",
+        "-                                 -     -",
+        "-                              ----     -",
+        "-         ---                           -",
+        "-                                       -",
+        "-                                       -",
+        "-                                       -",
+        "-                                       -",
+        "-              ----                     -",
+        "-              -m -                     -",
+        "-              -- -                     -",
+        "-           ----- ----                  -",
+        "-           --    ----                  -",
+        "-           -- -------                  -",
+        "-        ----- ----------               -",
+        "-        -----         --               -",
+        "-     ---------------- --               -",
+        "-                      ----             -",
+        "-----------------------------------------"]
+    level_3 = [
         "------------------------------------------",
         "-     m      --   m        --m           e s-",
         "-            --            --            ---",
@@ -129,7 +167,6 @@ def main(lvl='level_1'):
         "-                                        -",
         "-                                        -",
         "------------------------------------------"]
-    level_3 = []
     level_4 = []
     if lvl == 'level_1':
         level = level_1
@@ -167,6 +204,14 @@ def main(lvl='level_1'):
     level_height = len(level) * BLOCK_HEIGHT
 
     camera = Camera(camera_configure, level_width, level_height)
+    count_list = {0: '0 звезд.png',
+                  1: '1 звезда.png',
+                  2: '2 звезды.png',
+                  3: '3 звезды.png'}
+    num_lvl = {1: '1.png',
+                  2: '2.png',
+                  3: '3.png',
+                  4: '4.png'}
 
     while True:
         time.tick(60)
@@ -189,11 +234,25 @@ def main(lvl='level_1'):
                 left = False
                 right = False
                 up = False
-                exit_lvl = Image(270, 150, 'фон меню после уровня.png', -1, all_sprites)
+                x, y = width // 2 - 367 // 2, height // 2 - 269 // 2
+                x2, y2 = width // 2 - 20, height // 2 - 80
+
+                img = count_list[Menu.COUNT_MONEY]
+                Image(x, y, img, -1, all_sprites)
+                Image(x2, y2, number_lvl, -1, all_sprites)
+
+                home = Image(500, 150, 'домой.png', -1, all_sprites)
+                setting = Image(600, 150, 'кнопка настройки.png', -1, all_sprites)
+                next_lvl = Image(100, 150, 'следующий уровень.png', -1, all_sprites)
+
             if event.type == pygame.MOUSEBUTTONDOWN:
                 try:
-                    if pygame.Rect.collidepoint(exit_lvl.rect, pygame.mouse.get_pos()):
-                        print(1)
+                    if pygame.Rect.collidepoint(home.rect, pygame.mouse.get_pos()):
+                        Menu.main()
+                    if pygame.Rect.collidepoint(setting.rect, pygame.mouse.get_pos()):
+                        Menu.settings()
+                    if pygame.Rect.collidepoint(next_lvl.rect, pygame.mouse.get_pos()):
+                        main(count_list[Menu.COUNT_MONEY + 1], num_lvl[Menu.COUNT_MONEY + 1])
                 except UnboundLocalError:
                     pass
 
