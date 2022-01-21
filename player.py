@@ -1,9 +1,9 @@
 import pygame
 from pygame import *
-from main import *
+from main1 import *
 from Menu import *
 import Menu
-import main
+import main1
 import animation
 import os
 
@@ -112,5 +112,5 @@ class Player(sprite.Sprite):
     def stop(self, stop_lvl):
         for i in stop_lvl:
             if sprite.collide_rect(self, i):
-                main.exit_level_t()
+                main1.exit_level_t()
 

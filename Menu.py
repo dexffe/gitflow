@@ -1,9 +1,11 @@
-from main import *
+from main1 import *
+import main1
 import os
 
 COUNT_MONEY = 0
 COUNT_LVL = 1
 EXIT = False
+ALL_SPRITES = pygame.sprite.Group()
 
 
 with open("settings.txt", "w") as file:
@@ -52,48 +54,48 @@ class Image(pygame.sprite.Sprite):
 
 
 def exit():
-    Image(450, 100, 'Вы действительно хотите выйти.png', 0, all_sprites)
-    Image(600, 230, 'да.jpg', 0, all_sprites)
-    Image(560, 410, 'нет.jpg', 0, all_sprites)
+    Image(450, 100, 'Вы действительно хотите выйти.png', 0, ALL_SPRITES)
+    Image(600, 230, 'да.jpg', 0, ALL_SPRITES)
+    Image(560, 410, 'нет.jpg', 0, ALL_SPRITES)
 
 
 def settings():
-    Image(400, 0, 'Фон настроек.jpg', -1, all_sprites)
-    Image(480, 600, 'сбросить прогресс.png', -1, all_sprites)
+    Image(400, 0, 'Фон настроек.jpg', -1, ALL_SPRITES)
+    Image(480, 600, 'сбросить прогресс.png', -1, ALL_SPRITES)
 
 
 def levels():
-    Image(400, 0, 'Фон уровней.jpg', -1, all_sprites)
+    Image(400, 0, 'Фон уровней.jpg', -1, ALL_SPRITES)
 
-    Level_one = Image(450, 50, '1 уровень.png', -1, all_sprites)
-    Level_two = Image(450, 200, '2 уровень.png', -1, all_sprites)
-    Level_three = Image(450, 350, '3 уровень.png', -1, all_sprites)
-    Level_four = Image(450, 500, '4 уровень.png', -1, all_sprites)
+    Level_one = Image(450, 50, '1 уровень.png', -1, ALL_SPRITES)
+    Level_two = Image(450, 200, '2 уровень.png', -1, ALL_SPRITES)
+    Level_three = Image(450, 350, '3 уровень.png', -1, ALL_SPRITES)
+    Level_four = Image(450, 500, '4 уровень.png', -1, ALL_SPRITES)
 
-    Coin_1_lvl1 = Image(650, 50, 'Неактивная монетка.png', -1, all_sprites)
-    Coin_2_lvl1 = Image(750, 50, 'Неактивная монетка.png', -1, all_sprites)
-    Coin_3_lvl1 = Image(850, 50, 'Неактивная монетка.png', -1, all_sprites)
+    Coin_1_lvl1 = Image(650, 50, 'Неактивная монетка.png', -1, ALL_SPRITES)
+    Coin_2_lvl1 = Image(750, 50, 'Неактивная монетка.png', -1, ALL_SPRITES)
+    Coin_3_lvl1 = Image(850, 50, 'Неактивная монетка.png', -1, ALL_SPRITES)
 
-    Coin_1_lvl2 = Image(650, 200, 'Неактивная монетка.png', -1, all_sprites)
-    Coin_2_lvl2 = Image(750, 200, 'Неактивная монетка.png', -1, all_sprites)
-    Coin_3_lvl2 = Image(850, 200, 'Неактивная монетка.png', -1, all_sprites)
+    Coin_1_lvl2 = Image(650, 200, 'Неактивная монетка.png', -1, ALL_SPRITES)
+    Coin_2_lvl2 = Image(750, 200, 'Неактивная монетка.png', -1, ALL_SPRITES)
+    Coin_3_lvl2 = Image(850, 200, 'Неактивная монетка.png', -1, ALL_SPRITES)
 
-    Coin_1_lvl3 = Image(650, 350, 'Неактивная монетка.png', -1, all_sprites)
-    Coin_2_lvl3 = Image(750, 350, 'Неактивная монетка.png', -1, all_sprites)
-    Coin_3_lvl3 = Image(850, 350, 'Неактивная монетка.png', -1, all_sprites)
+    Coin_1_lvl3 = Image(650, 350, 'Неактивная монетка.png', -1, ALL_SPRITES)
+    Coin_2_lvl3 = Image(750, 350, 'Неактивная монетка.png', -1, ALL_SPRITES)
+    Coin_3_lvl3 = Image(850, 350, 'Неактивная монетка.png', -1, ALL_SPRITES)
 
-    Coin_1_lvl4 = Image(650, 500, 'Неактивная монетка.png', -1, all_sprites)
-    Coin_2_lvl4 = Image(750, 500, 'Неактивная монетка.png', -1, all_sprites)
-    Coin_3_lvl4 = Image(850, 500, 'Неактивная монетка.png', -1, all_sprites)
+    Coin_1_lvl4 = Image(650, 500, 'Неактивная монетка.png', -1, ALL_SPRITES)
+    Coin_2_lvl4 = Image(750, 500, 'Неактивная монетка.png', -1, ALL_SPRITES)
+    Coin_3_lvl4 = Image(850, 500, 'Неактивная монетка.png', -1, ALL_SPRITES)
 
 
 def new_game():
-    Image(0, 0, 'Фон меню слева.jpg', -1, all_sprites)
-    Image(90, 550, 'Выход.png', -1, all_sprites)
-    Image(30, 370, 'Настройки.png', -1, all_sprites)
-    Image(80, 220, 'Уровни.png', -1, all_sprites)
-    Image(20, 70, 'Новая игра.png', -1, all_sprites)
-    Image(400, 0, 'фон меню справа.jpg', -1, all_sprites)
+    Image(0, 0, 'Фон меню слева.jpg', -1, ALL_SPRITES)
+    Image(90, 550, 'Выход.png', -1, ALL_SPRITES)
+    Image(30, 370, 'Настройки.png', -1, ALL_SPRITES)
+    Image(80, 220, 'Уровни.png', -1, ALL_SPRITES)
+    Image(20, 70, 'Новая игра.png', -1, ALL_SPRITES)
+    Image(400, 0, 'фон меню справа.jpg', -1, ALL_SPRITES)
 
 
 def place(Place):
@@ -105,7 +107,7 @@ def place(Place):
         return levels()
 
 
-if __name__ == '__main__':
+def start():
     pygame.init()
     size = width, height = 1200, 700
     screen = pygame.display.set_mode(size)
@@ -113,13 +115,13 @@ if __name__ == '__main__':
 
     all_sprites = pygame.sprite.Group()
 
-    Fon_menu_left = Image(0, 0, 'Фон меню слева.jpg', -1, all_sprites)
-    Fon_menu_right = Image(400, 0, 'фон меню справа.jpg', -1, all_sprites)
+    Fon_menu_left = Image(0, 0, 'Фон меню слева.jpg', -1, ALL_SPRITES)
+    Fon_menu_right = Image(400, 0, 'фон меню справа.jpg', -1, ALL_SPRITES)
 
-    Exit = Image(90, 550, 'Выход.png', -1, all_sprites)
-    Settings = Image(30, 370, 'Настройки.png', -1, all_sprites)
-    Levels = Image(80, 220, 'Уровни.png', -1, all_sprites)
-    New_game = Image(20, 70, 'Новая игра.png', -1, all_sprites)
+    Exit = Image(90, 550, 'Выход.png', -1, ALL_SPRITES)
+    Settings = Image(30, 370, 'Настройки.png', -1, ALL_SPRITES)
+    Levels = Image(80, 220, 'Уровни.png', -1, ALL_SPRITES)
+    New_game = Image(20, 70, 'Новая игра.png', -1, ALL_SPRITES)
 
     Place = 'new_game'
 
@@ -129,38 +131,43 @@ if __name__ == '__main__':
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if pygame.Rect.collidepoint(Exit.rect, pygame.mouse.get_pos()) and active:
                     active = False
                     exit()
-                    Yes = Image(600, 230, 'да.jpg', 0, all_sprites)
-                    No = Image(560, 410, 'нет.jpg', 0, all_sprites)
+                    Yes = Image(600, 230, 'да.jpg', 0, ALL_SPRITES)
+                    No = Image(560, 410, 'нет.jpg', 0, ALL_SPRITES)
                 if pygame.Rect.collidepoint(Settings.rect, pygame.mouse.get_pos()) and active:
                     settings()
                     Place = 'settings'
-                    progress = Image(480, 600, 'сбросить прогресс.png', -1, all_sprites)
+                    progress = Image(480, 600, 'сбросить прогресс.png', -1, ALL_SPRITES)
 
                 if pygame.Rect.collidepoint(Levels.rect, pygame.mouse.get_pos()) and active:
                     lvl = True
                     levels()
-                    Level_one = Image(450, 50, '1 уровень.png', -1, all_sprites)
-                    Level_two = Image(450, 200, '2 уровень.png', -1, all_sprites)
-                    Level_three = Image(450, 350, '3 уровень.png', -1, all_sprites)
-                    Level_four = Image(450, 500, '4 уровень.png', -1, all_sprites)
+                    Level_one = Image(450, 50, '1 уровень.png', -1, ALL_SPRITES)
+                    Level_two = Image(450, 200, '2 уровень.png', -1, ALL_SPRITES)
+                    Level_three = Image(450, 350, '3 уровень.png', -1, ALL_SPRITES)
+                    Level_four = Image(450, 500, '4 уровень.png', -1, ALL_SPRITES)
                     Place = 'levels'
                 if pygame.Rect.collidepoint(New_game.rect, pygame.mouse.get_pos()) and active:
                     new_game()
-                    main()
+                    main1.exit_level_f()
+                    main1.main1()
 
                 if Place == 'levels' and active:
                     if pygame.Rect.collidepoint(Level_one.rect, pygame.mouse.get_pos()):
-                        main()
+                        main1.exit_level_f()
+                        main1.main1()
                     if pygame.Rect.collidepoint(Level_two.rect, pygame.mouse.get_pos()):
-                        main('level_2', '2.png')
+                        main1.exit_level_f()
+                        main1.main1('level_2', '2.png')
                     if pygame.Rect.collidepoint(Level_three.rect, pygame.mouse.get_pos()):
-                        main('level_3', '3.png')
+                        main1.exit_level_f()
+                        main1.main1('level_3', '3.png')
                     if pygame.Rect.collidepoint(Level_four.rect, pygame.mouse.get_pos()):
-                        main('level_4', '4.png')
+                        main1.exit_level_f()
+                        main1.main1('level_4', '4.png')
                 if Place == 'settings':
                     if pygame.Rect.collidepoint(progress.rect, pygame.mouse.get_pos()):
                         print('сбросить прогресс')
@@ -170,6 +177,10 @@ if __name__ == '__main__':
                     if pygame.Rect.collidepoint(No.rect, pygame.mouse.get_pos()):
                         active = True
                         place(Place)
-        all_sprites.draw(screen)
+        ALL_SPRITES.draw(screen)
         pygame.display.flip()
     pygame.quit()
+
+
+if __name__ == '__main__':
+    start()
