@@ -93,7 +93,7 @@ def place(Place):
         return levels()
 
 
-def main():
+if __name__ == '__main__':
     pygame.init()
     size = width, height = 1200, 700
     screen = pygame.display.set_mode(size)
@@ -161,7 +161,3 @@ def main():
         all_sprites.draw(screen)
         pygame.display.flip()
     pygame.quit()
-
-
-if __name__ == '__main__':
-    main()
