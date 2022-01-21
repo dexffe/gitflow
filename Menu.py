@@ -9,7 +9,7 @@ ALL_SPRITES = pygame.sprite.Group()
 
 
 with open("settings.txt", "w") as file:
-    file.write("cross_black")
+    file.write("platform.png фон")
 
 
 def load_image(name, color_key=None):
@@ -61,6 +61,16 @@ def exit():
 
 def settings():
     Image(400, 0, 'Фон настроек.jpg', -1, ALL_SPRITES)
+
+    file = os.path.dirname(__file__)
+    Image(530, 160, '%s/блоки/блок1.jpg' % file, 0, ALL_SPRITES)
+    Image(630, 160, '%s/блоки/блок2.jpg' % file, 0, ALL_SPRITES)
+    Image(730, 160, '%s/блоки/блок3.jpg' % file, 0, ALL_SPRITES)
+    Image(830, 160, '%s/блоки/блок4.jpg' % file, 0, ALL_SPRITES)
+    Image(930, 160, '%s/блоки/блок5.jpg' % file, 0, ALL_SPRITES)
+    Image(1030, 160, '%s/блоки/блок6.jpg' % file, 0, ALL_SPRITES)
+
+    Image(500, 10, 'тип платформы.png', -1, ALL_SPRITES)
     Image(480, 600, 'сбросить прогресс.png', -1, ALL_SPRITES)
 
 
@@ -124,6 +134,8 @@ def start():
     New_game = Image(20, 70, 'Новая игра.png', -1, ALL_SPRITES)
 
     Place = 'new_game'
+    yes_or_no = False
+    block = ''
 
     run = True
     active = True
@@ -141,7 +153,13 @@ def start():
                     settings()
                     Place = 'settings'
                     progress = Image(480, 600, 'сбросить прогресс.png', -1, ALL_SPRITES)
-
+                    file = os.path.dirname(__file__)
+                    block1 = Image(530, 160, '%s/блоки/блок1.jpg' % file, 0, ALL_SPRITES)
+                    block2 = Image(630, 160, '%s/блоки/блок2.jpg' % file, 0, ALL_SPRITES)
+                    block3 = Image(730, 160, '%s/блоки/блок3.jpg' % file, 0, ALL_SPRITES)
+                    block4 = Image(830, 160, '%s/блоки/блок4.jpg' % file, 0, ALL_SPRITES)
+                    block5 = Image(930, 160, '%s/блоки/блок5.jpg' % file, 0, ALL_SPRITES)
+                    block6 = Image(1030, 160, '%s/блоки/блок6.jpg' % file, 0, ALL_SPRITES)
                 if pygame.Rect.collidepoint(Levels.rect, pygame.mouse.get_pos()) and active:
                     lvl = True
                     levels()
@@ -168,7 +186,48 @@ def start():
                     if pygame.Rect.collidepoint(Level_four.rect, pygame.mouse.get_pos()):
                         main1.exit_level_f()
                         main1.main1('level_4', '4.png')
-                if Place == 'settings':
+                if Place == 'settings' and active:
+                    if pygame.Rect.collidepoint(block1.rect, pygame.mouse.get_pos()):
+                        if yes_or_no:
+                            settings()
+                        Image(508, 200, 'выбран.png', -1, ALL_SPRITES)
+                        block = 'блок1.jpg'
+                        yes_or_no = True
+                    if pygame.Rect.collidepoint(block2.rect, pygame.mouse.get_pos()):
+                        if yes_or_no:
+                            settings()
+                        Image(608, 200, 'выбран.png', -1, ALL_SPRITES)
+                        block = 'блок2.jpg'
+                        yes_or_no = True
+                    if pygame.Rect.collidepoint(block3.rect, pygame.mouse.get_pos()):
+                        if yes_or_no:
+                            settings()
+                        Image(708, 200, 'выбран.png', -1, ALL_SPRITES)
+                        block = 'блок3.jpg'
+                        yes_or_no = True
+                    if pygame.Rect.collidepoint(block4.rect, pygame.mouse.get_pos()):
+                        if yes_or_no:
+                            settings()
+                        Image(808, 200, 'выбран.png', -1, ALL_SPRITES)
+                        block = 'блок4.jpg'
+                        yes_or_no = True
+                    if pygame.Rect.collidepoint(block5.rect, pygame.mouse.get_pos()):
+                        if yes_or_no:
+                            settings()
+                        Image(908, 200, 'выбран.png', -1, ALL_SPRITES)
+                        block = 'блок5.jpg'
+                        yes_or_no = True
+                    if pygame.Rect.collidepoint(block6.rect, pygame.mouse.get_pos()):
+                        if yes_or_no:
+                            settings()
+                        Image(1008, 200, 'выбран.png', -1, ALL_SPRITES)
+                        block = 'блок6.jpg'
+                        yes_or_no = True
+
+                    if block != '':
+                        with open("settings.txt", "w") as file:
+                            file.write(f"{block} фон")
+
                     if pygame.Rect.collidepoint(progress.rect, pygame.mouse.get_pos()):
                         print('сбросить прогресс')
                 if active is False:
