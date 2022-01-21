@@ -12,7 +12,9 @@ BLOCK_HEIGHT = 32
 class Platform(sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        self.image = image.load('%s/блоки/platform.png' % os.path.dirname(__file__))
+        with open("settings.txt") as file:
+            s1 = file.read().split()
+        self.image = image.load(F'%s/блоки/{s1[0]}' % os.path.dirname(__file__))
         self.rect = Rect(x, y, BLOCK_WIDTH, BLOCK_HEIGHT)
 
 
