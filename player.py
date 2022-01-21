@@ -112,5 +112,5 @@ class Player(sprite.Sprite):
     def stop(self, stop_lvl):
         for i in stop_lvl:
             if sprite.collide_rect(self, i):
-                main.exit_level()
+                main.exit_level_t()
 

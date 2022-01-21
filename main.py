@@ -2,6 +2,8 @@ import pygame
 import sys
 
 import Menu
+
+from Menu import *
 from player import *
 from blocks import *
 
@@ -40,9 +42,14 @@ def camera_configure(camera, target_rect):
     return pygame.Rect(left, top, width, height)
 
 
-def exit_level():
+def exit_level_t():
     global EXIT
     EXIT = True
+
+
+def exit_level_f():
+    global EXIT
+    EXIT = False
 
 
 def main(lvl='level_1', number_lvl='1.png'):
@@ -90,7 +97,7 @@ def main(lvl='level_1', number_lvl='1.png'):
         "---------------------------------------"]
     level_2 = [
         "-----------------------------------------",
-        "m                                       e s-",
+        "-m                                      e s-",
         "----                                  -----",
         "-                                   --  -",
         "-                              m        -",
@@ -209,9 +216,13 @@ def main(lvl='level_1', number_lvl='1.png'):
                   2: '2 звезды.png',
                   3: '3 звезды.png'}
     num_lvl = {1: '1.png',
-                  2: '2.png',
-                  3: '3.png',
-                  4: '4.png'}
+               2: '2.png',
+               3: '3.png',
+               4: '4.png'}
+    nums_lvl = {1: 'level_1',
+                2: 'level_2',
+                3: 'level_3',
+                4: 'level_4'}
 
     while True:
         time.tick(60)
@@ -241,20 +252,24 @@ def main(lvl='level_1', number_lvl='1.png'):
                 Image(x, y, img, -1, all_sprites)
                 Image(x2, y2, number_lvl, -1, all_sprites)
 
-                home = Image(500, 150, 'домой.png', -1, all_sprites)
-                setting = Image(600, 150, 'кнопка настройки.png', -1, all_sprites)
-                next_lvl = Image(100, 150, 'следующий уровень.png', -1, all_sprites)
+                home = Image(450, 400, 'домой.png', -1, all_sprites)
+                #setting = Image(600, 400, 'кнопка настройки.png', -1, all_sprites)
+                #next_lvl = Image(700, 400, 'следующий уровень.png', -1, all_sprites)
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                try:
-                    if pygame.Rect.collidepoint(home.rect, pygame.mouse.get_pos()):
-                        Menu.main()
-                    if pygame.Rect.collidepoint(setting.rect, pygame.mouse.get_pos()):
-                        Menu.settings()
-                    if pygame.Rect.collidepoint(next_lvl.rect, pygame.mouse.get_pos()):
-                        main(count_list[Menu.COUNT_MONEY + 1], num_lvl[Menu.COUNT_MONEY + 1])
-                except UnboundLocalError:
-                    pass
+                if pygame.Rect.collidepoint(home.rect, pygame.mouse.get_pos()):
+                    print(home.rect)
+                #if pygame.Rect.collidepoint(setting.rect, pygame.mouse.get_pos()):
+                #    print(setting.rect)
+                #if pygame.Rect.collidepoint(next_lvl.rect, pygame.mouse.get_pos()):
+                #    print(next_lvl.rect)
+                #    exit_level_f()
+                #    left = True
+                #    right = True
+                #    up = True
+                #    Menu.count_money(1, True)
+                #    Menu.count_lvl(1)
+                #    main(nums_lvl[Menu.COUNT_LVL], num_lvl[Menu.COUNT_LVL])
 
         screen.fill('red')
 

@@ -2,6 +2,7 @@ from main import *
 import os
 
 COUNT_MONEY = 0
+COUNT_LVL = 1
 EXIT = False
 
 
@@ -25,9 +26,20 @@ def load_image(name, color_key=None):
     return image
 
 
-def count_money(number):
+def count_money(number, new=False):
     global COUNT_MONEY
-    COUNT_MONEY += number
+    if new:
+        COUNT_MONEY = 0
+    else:
+        COUNT_MONEY += number
+
+
+def count_lvl(number):
+    global COUNT_LVL
+    if COUNT_LVL + number < 5:
+        COUNT_LVL += number
+    else:
+        COUNT_LVL = 1
 
 
 class Image(pygame.sprite.Sprite):
