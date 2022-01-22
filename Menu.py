@@ -126,6 +126,7 @@ def exit():
 def settings():
     with open("settings.txt") as file:
         s1 = file.read().split()
+    print(s1)
     Image(400, 0, 'Фон настроек.jpg', -1, ALL_SPRITES)
 
     file = os.path.dirname(__file__)
@@ -310,7 +311,7 @@ def start():
                     if pygame.Rect.collidepoint(fon3.rect, pygame.mouse.get_pos()):
                         fon = 'фон3.jpg'
 
-                    if block != '' or fon != '':
+                    if block != 'блок1.jpg' or fon != 'фон2.jpg':
                         with open("settings.txt", "w") as file:
                             file.write(f"{block} {fon}")
                         settings()
@@ -318,6 +319,9 @@ def start():
                     if pygame.Rect.collidepoint(progress.rect, pygame.mouse.get_pos()):
                         for i in range(4):
                             COIN[f'Coin_1_lvl{i + 1}'] = 'Неактивная_монетка.png'
+                        with open("settings.txt", "w") as file:
+                            file.write("блок1.jpg фон2.jpg")
+                        settings()
 
                 if active is False:
                     if pygame.Rect.collidepoint(Yes.rect, pygame.mouse.get_pos()):
