@@ -8,6 +8,7 @@ from player import *
 from blocks import *
 
 
+all_sprites = pygame.sprite.Group()
 count_list = {0: '0 звезд.png',
               1: '1 звезда.png',
               2: '2 звезды.png',
@@ -222,7 +223,7 @@ def main1(lvl, number_lvl):
         "-     -   -------- --------   -            ----           -",
         "---- --   -------- --------              -------------  ---",
         "-    -     ------- --------                -------        -",
-        "-    -  g  ------- --------                -------        -",
+        "-    -  s  ------- --------                -------        -",
         "-    -     ------- ---------                              -",
         "- ---------------- --------       -        -----------  ---",
         "-             ---- --------              - -----------    -",
@@ -289,6 +290,9 @@ def main1(lvl, number_lvl):
             elif col == "s":
                 stop = Stop(x, y)
                 stop_lvl.append(stop)
+            elif col == "I":
+                platforma = Platform(x, y)
+                all_sprites.add(platforma)
 
             x += BLOCK_WIDTH
         y += BLOCK_HEIGHT
