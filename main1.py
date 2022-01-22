@@ -64,13 +64,13 @@ def main1(lvl, number_lvl):
     pygame.display.set_caption("...")
 
     if number_lvl == '1.png':
-        hero = Player(100, 100)
+        hero = Player(1184, 704)
     elif number_lvl == '2.png':
-        hero = Player(100, 100)
+        hero = Player(1254, 1056)
     elif number_lvl == '3.png':
-        hero = Player(100, 100)
+        hero = Player(1254, 1280)
     else:
-        hero = Player(100, 100)
+        hero = Player(1832, 1100)
 
     left = False
     right = False
