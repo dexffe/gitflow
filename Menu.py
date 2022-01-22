@@ -317,6 +317,7 @@ def start():
                         settings()
 
                     if pygame.Rect.collidepoint(progress.rect, pygame.mouse.get_pos()):
+                        COUNT_LVL_NEXT = 1
                         for i in range(4):
                             COIN[f'Coin_1_lvl{i + 1}'] = 'Неактивная_монетка.png'
                             COIN[f'Coin_2_lvl{i + 1}'] = 'Неактивная_монетка.png'
