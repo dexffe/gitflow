@@ -3,6 +3,7 @@ import main1
 import os
 
 COUNT_MONEY = 0
+COUNT_LVL_NEXT = 1
 COUNT_LVL = 1
 EXIT = False
 ALL_SPRITES = pygame.sprite.Group()
@@ -56,16 +57,26 @@ def count_money(number, new=False):
         COUNT_MONEY += number
 
 
-def count_lvl(number):
-    global COUNT_LVL
-    if COUNT_LVL + number < 5:
-        COUNT_LVL += number
+def count_lvl_next(number):
+    global COUNT_LVL_NEXT
+    if COUNT_LVL_NEXT + number < 5:
+        COUNT_LVL_NEXT += number
     else:
-        COUNT_LVL = 1
+        COUNT_LVL_NEXT = 1
 
 
 def screen_money():
-    pass
+    global COIN
+    print(COUNT_LVL)
+    if COUNT_MONEY == 3:
+        COIN[f'Coin_1_lvl{COUNT_LVL_NEXT}'] = 'Монетка.png'
+        COIN[f'Coin_2_lvl{COUNT_LVL_NEXT}'] = 'Монетка.png'
+        COIN[f'Coin_3_lvl{COUNT_LVL_NEXT}'] = 'Монетка.png'
+    elif COUNT_MONEY == 2:
+        COIN[f'Coin_1_lvl{COUNT_LVL_NEXT}'] = 'Монетка.png'
+        COIN[f'Coin_2_lvl{COUNT_LVL_NEXT}'] = 'Монетка.png'
+    elif COUNT_MONEY == 1:
+        COIN[f'Coin_1_lvl{COUNT_LVL_NEXT}'] = 'Монетка.png'
 
 
 class Image(pygame.sprite.Sprite):
@@ -233,15 +244,19 @@ def start():
 
                 if Place == 'levels' and active:
                     if pygame.Rect.collidepoint(Level_one.rect, pygame.mouse.get_pos()):
+                        main1.COUNT_LVL_NEXT = 1
                         main1.exit_level_f()
-                        main1.main1(nums_lvl[Menu.COUNT_LVL], num_lvl[Menu.COUNT_LVL])
+                        main1.main1('level_1', '1.png')
                     if pygame.Rect.collidepoint(Level_two.rect, pygame.mouse.get_pos()):
+                        main1.COUNT_LVL_NEXT = 2
                         main1.exit_level_f()
                         main1.main1('level_2', '2.png')
                     if pygame.Rect.collidepoint(Level_three.rect, pygame.mouse.get_pos()):
+                        main1.COUNT_LVL_NEXT = 3
                         main1.exit_level_f()
                         main1.main1('level_3', '3.png')
                     if pygame.Rect.collidepoint(Level_four.rect, pygame.mouse.get_pos()):
+                        main1.COUNT_LVL_NEXT = 4
                         main1.exit_level_f()
                         main1.main1('level_4', '4.png')
                 if Place == 'settings' and active:

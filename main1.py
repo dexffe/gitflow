@@ -178,7 +178,49 @@ def main1(lvl, number_lvl):
         "-                                        -",
         "-                                        -",
         "------------------------------------------"]
-    level_4 = []
+    level_4 = [
+        "------------------------------------------",
+        "-     m      --   m        --m           e s-",
+        "-            --            --            ---",
+        "-            --         -----   -        -",
+        "-            --         -----            -",
+        "-            --         -----        -   -",
+        "---        ----  -         --            -",
+        "-            --            --  -         -",
+        "-            --            --            -",
+        "-            --            --         -- -",
+        "-            --       --   --            -",
+        "-     --     --            --            -",
+        "-            --            --            -",
+        "-            --            ----          -",
+        "-            --        --- --            -",
+        "-     --     --        --- --            -",
+        "-     --     --            --            -",
+        "-            --            --         - --",
+        "-            --            --            -",
+        "-          -------         --            -",
+        "-          -------         --            -",
+        "-            --            --  --        -",
+        "-            --            --            -",
+        "---          --            --            -",
+        "---          -----         --            -",
+        "-            --            --     --  - --",
+        "-            --            --            -",
+        "-            --        --  --            -",
+        "---          --        --  --            -",
+        "---          --            -----         -",
+        "-            --            --            -",
+        "-            --    -       --            -",
+        "-            --            --            -",
+        "---          --         -- --         ----",
+        "-            --            --            -",
+        "-            --            --            -",
+        "-            --            --            -",
+        "-            --            --            -",
+        "---          ------    ---------         -",
+        "-                                        -",
+        "-                                        -",
+        "------------------------------------------"]
     if lvl == 'level_1':
         level = level_1
     elif lvl == 'level_2':
@@ -252,7 +294,7 @@ def main1(lvl, number_lvl):
                 try:
                     if pygame.Rect.collidepoint(home.rect, pygame.mouse.get_pos()):
                         Menu.COUNT_MONEY = 0
-                        count_lvl(1)
+                        Menu.count_lvl_next(1)
                         Menu.start()
                     if pygame.Rect.collidepoint(next_lvl.rect, pygame.mouse.get_pos()):
                         exit_level_f()
@@ -260,8 +302,8 @@ def main1(lvl, number_lvl):
                         right = True
                         up = True
                         Menu.count_money(1, True)
-                        Menu.count_lvl(1)
-                        main1(nums_lvl[Menu.COUNT_LVL], num_lvl[Menu.COUNT_LVL])
+                        Menu.count_lvl_next(1)
+                        main1(nums_lvl[Menu.COUNT_LVL_NEXT], num_lvl[Menu.COUNT_LVL_NEXT])
                 except UnboundLocalError:
                     pass
 
