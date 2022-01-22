@@ -319,6 +319,8 @@ def start():
                     if pygame.Rect.collidepoint(progress.rect, pygame.mouse.get_pos()):
                         for i in range(4):
                             COIN[f'Coin_1_lvl{i + 1}'] = 'Неактивная_монетка.png'
+                            COIN[f'Coin_2_lvl{i + 1}'] = 'Неактивная_монетка.png'
+                            COIN[f'Coin_3_lvl{i + 1}'] = 'Неактивная_монетка.png'
                         with open("settings.txt", "w") as file:
                             file.write("блок1.jpg фон2.jpg")
                             block = 'блок1.jpg'
