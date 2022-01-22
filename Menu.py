@@ -14,17 +14,21 @@ nums_lvl = {1: 'level_1',
             2: 'level_2',
             3: 'level_3',
             4: 'level_4'}
-coin = {Coin_1_lvl1: 'Неактивная монетка.png',
-        Coin_2_lvl1: 'Неактивная монетка.png',
-        Coin_3_lvl1: 'Неактивная монетка.png',
+COIN = {'Coin_1_lvl1': 'Неактивная монетка.png',
+        'Coin_2_lvl1': 'Неактивная монетка.png',
+        'Coin_3_lvl1': 'Неактивная монетка.png',
 
-        Coin_1_lvl2: 'Неактивная монетка.png',
-        Coin_2_lvl2: 'Неактивная монетка.png',
-        Coin_3_lvl2: 'Неактивная монетка.png',
+        'Coin_1_lvl2': 'Неактивная монетка.png',
+        'Coin_2_lvl2': 'Неактивная монетка.png',
+        'Coin_3_lvl2': 'Неактивная монетка.png',
 
-        Coin_1_lvl3: 'Неактивная монетка.png',
-        Coin_2_lvl3: 'Неактивная монетка.png',
-        Coin_3_lvl3: 'Неактивная монетка.png',
+        'Coin_1_lvl3': 'Неактивная монетка.png',
+        'Coin_2_lvl3': 'Неактивная монетка.png',
+        'Coin_3_lvl3': 'Неактивная монетка.png',
+
+        'Coin_1_lvl4': 'Неактивная монетка.png',
+        'Coin_2_lvl4': 'Неактивная монетка.png',
+        'Coin_3_lvl4': 'Неактивная монетка.png',
         }
 
 
@@ -130,21 +134,21 @@ def levels():
     Image(450, 350, '3 уровень.png', -1, ALL_SPRITES)
     Image(450, 500, '4 уровень.png', -1, ALL_SPRITES)
 
-    Image(650, 50, coin[Coin_1_lvl1], -1, ALL_SPRITES)
-    Image(750, 50, coin[Coin_2_lvl1], -1, ALL_SPRITES)
-    Image(850, 50, coin[Coin_3_lvl1], -1, ALL_SPRITES)
+    Image(650, 50, COIN['Coin_1_lvl1'], -1, ALL_SPRITES)
+    Image(750, 50, COIN['Coin_2_lvl1'], -1, ALL_SPRITES)
+    Image(850, 50, COIN['Coin_3_lvl1'], -1, ALL_SPRITES)
 
-    Image(650, 200, coin[Coin_1_lvl2], -1, ALL_SPRITES)
-    Image(750, 200, coin[Coin_2_lvl2], -1, ALL_SPRITES)
-    Image(850, 200, coin[Coin_3_lvl2], -1, ALL_SPRITES)
+    Image(650, 200, COIN['Coin_1_lvl2'], -1, ALL_SPRITES)
+    Image(750, 200, COIN['Coin_2_lvl2'], -1, ALL_SPRITES)
+    Image(850, 200, COIN['Coin_3_lvl2'], -1, ALL_SPRITES)
 
-    Image(650, 350, coin[Coin_1_lvl3], -1, ALL_SPRITES)
-    Image(750, 350, coin[Coin_2_lvl3], -1, ALL_SPRITES)
-    Image(850, 350, coin[Coin_3_lvl3], -1, ALL_SPRITES)
+    Image(650, 350, COIN['Coin_1_lvl3'], -1, ALL_SPRITES)
+    Image(750, 350, COIN['Coin_2_lvl3'], -1, ALL_SPRITES)
+    Image(850, 350, COIN['Coin_3_lvl3'], -1, ALL_SPRITES)
 
-    Image(650, 500, coin[Coin_1_lvl4], -1, ALL_SPRITES)
-    Image(750, 500, coin[Coin_2_lvl4], -1, ALL_SPRITES)
-    Image(850, 500, coin[Coin_3_lvl4], -1, ALL_SPRITES)
+    Image(650, 500, COIN['Coin_1_lvl4'], -1, ALL_SPRITES)
+    Image(750, 500, COIN['Coin_2_lvl4'], -1, ALL_SPRITES)
+    Image(850, 500, COIN['Coin_3_lvl4'], -1, ALL_SPRITES)
 
 
 def new_game():
