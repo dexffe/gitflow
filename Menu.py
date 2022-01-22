@@ -321,6 +321,8 @@ def start():
                             COIN[f'Coin_1_lvl{i + 1}'] = 'Неактивная_монетка.png'
                         with open("settings.txt", "w") as file:
                             file.write("блок1.jpg фон2.jpg")
+                            block = 'блок1.jpg'
+                            fon = 'фон2.jpg'
                         settings()
 
                 if active is False:
