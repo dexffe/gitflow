@@ -57,7 +57,7 @@ def exit_level_f():
     EXIT = False
 
 
-def main1(lvl=nums_lvl[Menu.COUNT_LVL], number_lvl=num_lvl[Menu.COUNT_LVL]):
+def main1(lvl, number_lvl):
     pygame.init()
     size = width, height = 1200, 700
     screen = pygame.display.set_mode(size)
@@ -234,6 +234,7 @@ def main1(lvl=nums_lvl[Menu.COUNT_LVL], number_lvl=num_lvl[Menu.COUNT_LVL]):
             if event.type == KEYUP and event.key == K_LEFT:
                 left = False
             if EXIT:
+                screen_money()
                 left = False
                 right = False
                 up = False
@@ -247,9 +248,11 @@ def main1(lvl=nums_lvl[Menu.COUNT_LVL], number_lvl=num_lvl[Menu.COUNT_LVL]):
                 home = Menu.Image(450, 400, 'домой.png', -1, all_sprites)
                 next_lvl = Menu.Image(650, 400, 'следующий уровень.png', -1, all_sprites)
 
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 try:
                     if pygame.Rect.collidepoint(home.rect, pygame.mouse.get_pos()):
+                        Menu.COUNT_MONEY = 0
+                        count_lvl(1)
                         Menu.start()
                     if pygame.Rect.collidepoint(next_lvl.rect, pygame.mouse.get_pos()):
                         exit_level_f()
@@ -278,4 +281,4 @@ def main1(lvl=nums_lvl[Menu.COUNT_LVL], number_lvl=num_lvl[Menu.COUNT_LVL]):
 
 
 if __name__ == "__main__":
-    main1()
+    main1(nums_lvl[Menu.COUNT_LVL], num_lvl[Menu.COUNT_LVL])

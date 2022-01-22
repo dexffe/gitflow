@@ -6,10 +6,26 @@ COUNT_MONEY = 0
 COUNT_LVL = 1
 EXIT = False
 ALL_SPRITES = pygame.sprite.Group()
+num_lvl = {1: '1.png',
+           2: '2.png',
+           3: '3.png',
+           4: '4.png'}
+nums_lvl = {1: 'level_1',
+            2: 'level_2',
+            3: 'level_3',
+            4: 'level_4'}
+coin = {Coin_1_lvl1: 'Неактивная монетка.png',
+        Coin_2_lvl1: 'Неактивная монетка.png',
+        Coin_3_lvl1: 'Неактивная монетка.png',
 
+        Coin_1_lvl2: 'Неактивная монетка.png',
+        Coin_2_lvl2: 'Неактивная монетка.png',
+        Coin_3_lvl2: 'Неактивная монетка.png',
 
-with open("settings.txt", "w") as file:
-    file.write("блок6.jpg фон2.jpg")
+        Coin_1_lvl3: 'Неактивная монетка.png',
+        Coin_2_lvl3: 'Неактивная монетка.png',
+        Coin_3_lvl3: 'Неактивная монетка.png',
+        }
 
 
 def load_image(name, color_key=None):
@@ -42,6 +58,10 @@ def count_lvl(number):
         COUNT_LVL += number
     else:
         COUNT_LVL = 1
+
+
+def screen_money():
+    pass
 
 
 class Image(pygame.sprite.Sprite):
@@ -105,26 +125,26 @@ def settings():
 def levels():
     Image(400, 0, 'Фон уровней.jpg', -1, ALL_SPRITES)
 
-    Level_one = Image(450, 50, '1 уровень.png', -1, ALL_SPRITES)
-    Level_two = Image(450, 200, '2 уровень.png', -1, ALL_SPRITES)
-    Level_three = Image(450, 350, '3 уровень.png', -1, ALL_SPRITES)
-    Level_four = Image(450, 500, '4 уровень.png', -1, ALL_SPRITES)
+    Image(450, 50, '1 уровень.png', -1, ALL_SPRITES)
+    Image(450, 200, '2 уровень.png', -1, ALL_SPRITES)
+    Image(450, 350, '3 уровень.png', -1, ALL_SPRITES)
+    Image(450, 500, '4 уровень.png', -1, ALL_SPRITES)
 
-    Coin_1_lvl1 = Image(650, 50, 'Неактивная монетка.png', -1, ALL_SPRITES)
-    Coin_2_lvl1 = Image(750, 50, 'Неактивная монетка.png', -1, ALL_SPRITES)
-    Coin_3_lvl1 = Image(850, 50, 'Неактивная монетка.png', -1, ALL_SPRITES)
+    Image(650, 50, coin[Coin_1_lvl1], -1, ALL_SPRITES)
+    Image(750, 50, coin[Coin_2_lvl1], -1, ALL_SPRITES)
+    Image(850, 50, coin[Coin_3_lvl1], -1, ALL_SPRITES)
 
-    Coin_1_lvl2 = Image(650, 200, 'Неактивная монетка.png', -1, ALL_SPRITES)
-    Coin_2_lvl2 = Image(750, 200, 'Неактивная монетка.png', -1, ALL_SPRITES)
-    Coin_3_lvl2 = Image(850, 200, 'Неактивная монетка.png', -1, ALL_SPRITES)
+    Image(650, 200, coin[Coin_1_lvl2], -1, ALL_SPRITES)
+    Image(750, 200, coin[Coin_2_lvl2], -1, ALL_SPRITES)
+    Image(850, 200, coin[Coin_3_lvl2], -1, ALL_SPRITES)
 
-    Coin_1_lvl3 = Image(650, 350, 'Неактивная монетка.png', -1, ALL_SPRITES)
-    Coin_2_lvl3 = Image(750, 350, 'Неактивная монетка.png', -1, ALL_SPRITES)
-    Coin_3_lvl3 = Image(850, 350, 'Неактивная монетка.png', -1, ALL_SPRITES)
+    Image(650, 350, coin[Coin_1_lvl3], -1, ALL_SPRITES)
+    Image(750, 350, coin[Coin_2_lvl3], -1, ALL_SPRITES)
+    Image(850, 350, coin[Coin_3_lvl3], -1, ALL_SPRITES)
 
-    Coin_1_lvl4 = Image(650, 500, 'Неактивная монетка.png', -1, ALL_SPRITES)
-    Coin_2_lvl4 = Image(750, 500, 'Неактивная монетка.png', -1, ALL_SPRITES)
-    Coin_3_lvl4 = Image(850, 500, 'Неактивная монетка.png', -1, ALL_SPRITES)
+    Image(650, 500, coin[Coin_1_lvl4], -1, ALL_SPRITES)
+    Image(750, 500, coin[Coin_2_lvl4], -1, ALL_SPRITES)
+    Image(850, 500, coin[Coin_3_lvl4], -1, ALL_SPRITES)
 
 
 def new_game():
@@ -205,12 +225,12 @@ def start():
                 if pygame.Rect.collidepoint(New_game.rect, pygame.mouse.get_pos()) and active:
                     new_game()
                     main1.exit_level_f()
-                    main1.main1()
+                    main1.main1(nums_lvl[COUNT_LVL], num_lvl[COUNT_LVL])
 
                 if Place == 'levels' and active:
                     if pygame.Rect.collidepoint(Level_one.rect, pygame.mouse.get_pos()):
                         main1.exit_level_f()
-                        main1.main1()
+                        main1.main1(nums_lvl[Menu.COUNT_LVL], num_lvl[Menu.COUNT_LVL])
                     if pygame.Rect.collidepoint(Level_two.rect, pygame.mouse.get_pos()):
                         main1.exit_level_f()
                         main1.main1('level_2', '2.png')
