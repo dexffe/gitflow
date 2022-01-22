@@ -348,7 +348,11 @@ def main1(lvl, number_lvl):
                 except UnboundLocalError:
                     pass
 
-        screen.fill('red')
+        with open('settings.txt') as file:
+            data = file.read().split()
+        bg = Menu.load_image(data[1]).convert()
+        bg = pygame.transform.smoothscale(bg, screen.get_size())
+        screen.blit(bg, (0, 0))
 
         hero.update(left, right, up, platforms, moneys, stop_lvl)
 
