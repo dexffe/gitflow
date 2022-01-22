@@ -15,22 +15,29 @@ nums_lvl = {1: 'level_1',
             2: 'level_2',
             3: 'level_3',
             4: 'level_4'}
-COIN = {'Coin_1_lvl1': 'Неактивная монетка.png',
-        'Coin_2_lvl1': 'Неактивная монетка.png',
-        'Coin_3_lvl1': 'Неактивная монетка.png',
 
-        'Coin_1_lvl2': 'Неактивная монетка.png',
-        'Coin_2_lvl2': 'Неактивная монетка.png',
-        'Coin_3_lvl2': 'Неактивная монетка.png',
+COIN = {'Coin_1_lvl1': 'Неактивная_монетка.png',
+        'Coin_2_lvl1': 'Неактивная_монетка.png',
+        'Coin_3_lvl1': 'Неактивная_монетка.png',
 
-        'Coin_1_lvl3': 'Неактивная монетка.png',
-        'Coin_2_lvl3': 'Неактивная монетка.png',
-        'Coin_3_lvl3': 'Неактивная монетка.png',
+        'Coin_1_lvl2': 'Неактивная_монетка.png',
+        'Coin_2_lvl2': 'Неактивная_монетка.png',
+        'Coin_3_lvl2': 'Неактивная_монетка.png',
 
-        'Coin_1_lvl4': 'Неактивная монетка.png',
-        'Coin_2_lvl4': 'Неактивная монетка.png',
-        'Coin_3_lvl4': 'Неактивная монетка.png',
-        }
+        'Coin_1_lvl3': 'Неактивная_монетка.png',
+        'Coin_2_lvl3': 'Неактивная_монетка.png',
+        'Coin_3_lvl3': 'Неактивная_монетка.png',
+
+        'Coin_1_lvl4': 'Неактивная_монетка.png',
+        'Coin_2_lvl4': 'Неактивная_монетка.png',
+        'Coin_3_lvl4': 'Неактивная_монетка.png'}
+for i in range(4):
+    with open(f"level{i + 1}.txt") as file:
+        s1 = file.read().split()
+        if s1 != []:
+            COIN[f'Coin_1_lvl{i + 1}'] = s1[0]
+            COIN[f'Coin_2_lvl{i + 1}'] = s1[1]
+            COIN[f'Coin_3_lvl{i + 1}'] = s1[2]
 
 
 def load_image(name, color_key=None):
@@ -67,7 +74,6 @@ def count_lvl_next(number):
 
 def screen_money():
     global COIN
-    print(COUNT_LVL)
     if COUNT_MONEY == 3:
         COIN[f'Coin_1_lvl{COUNT_LVL_NEXT}'] = 'Монетка.png'
         COIN[f'Coin_2_lvl{COUNT_LVL_NEXT}'] = 'Монетка.png'
@@ -77,6 +83,30 @@ def screen_money():
         COIN[f'Coin_2_lvl{COUNT_LVL_NEXT}'] = 'Монетка.png'
     elif COUNT_MONEY == 1:
         COIN[f'Coin_1_lvl{COUNT_LVL_NEXT}'] = 'Монетка.png'
+
+    if COUNT_LVL_NEXT == 1:
+        with open("level1.txt", "w") as file1:
+            file1.write(f"{COIN[f'Coin_1_lvl{COUNT_LVL_NEXT}']} "
+                        f"{COIN[f'Coin_2_lvl{COUNT_LVL_NEXT}']} "
+                        f"{COIN[f'Coin_3_lvl{COUNT_LVL_NEXT}']}")
+
+    elif COUNT_LVL_NEXT == 2:
+        with open("level2.txt", "w") as file1:
+            file1.write(f"{COIN[f'Coin_1_lvl{COUNT_LVL_NEXT}']} "
+                        f"{COIN[f'Coin_2_lvl{COUNT_LVL_NEXT}']} "
+                        f"{COIN[f'Coin_3_lvl{COUNT_LVL_NEXT}']}")
+
+    elif COUNT_LVL_NEXT == 3:
+        with open("level3.txt", "w") as file1:
+            file1.write(f"{COIN[f'Coin_1_lvl{COUNT_LVL_NEXT}']} "
+                        f"{COIN[f'Coin_2_lvl{COUNT_LVL_NEXT}']} "
+                        f"{COIN[f'Coin_3_lvl{COUNT_LVL_NEXT}']}")
+
+    elif COUNT_LVL_NEXT == 4:
+        with open("level4.txt", "w") as file1:
+            file1.write(f"{COIN[f'Coin_1_lvl{COUNT_LVL_NEXT}']} "
+                        f"{COIN[f'Coin_2_lvl{COUNT_LVL_NEXT}']} "
+                        f"{COIN[f'Coin_3_lvl{COUNT_LVL_NEXT}']}")
 
 
 class Image(pygame.sprite.Sprite):
@@ -196,8 +226,8 @@ def start():
 
     Place = 'new_game'
 
-    with open("settings.txt") as file:
-        s1 = file.read().split()
+    with open("settings.txt") as f:
+        s1 = f.read().split()
     block = s1[0]
     fon = s1[1]
 
