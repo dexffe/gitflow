@@ -318,6 +318,7 @@ def start():
                     if pygame.Rect.collidepoint(progress.rect, pygame.mouse.get_pos()):
                         for i in range(4):
                             COIN[f'Coin_1_lvl{i + 1}'] = 'Неактивная_монетка.png'
+
                 if active is False:
                     if pygame.Rect.collidepoint(Yes.rect, pygame.mouse.get_pos()):
                         sys.exit()
