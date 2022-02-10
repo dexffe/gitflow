@@ -62,7 +62,7 @@ def main1(lvl, number_lvl):
     pygame.init()
     size = width, height = 1200, 700
     screen = pygame.display.set_mode(size)
-    pygame.display.set_caption("...")
+    pygame.display.set_caption("Our game")
 
     if number_lvl == '1.png':
         hero = Player(1184, 704)

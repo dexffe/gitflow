@@ -214,7 +214,7 @@ def start():
     pygame.init()
     size = width, height = 1200, 700
     screen = pygame.display.set_mode(size)
-    # pygame.display.set_caption('Name')
+    pygame.display.set_caption('Our gam')
 
     Fon_menu_left = Image(0, 0, 'Фон меню слева.jpg', -1, ALL_SPRITES)
     Fon_menu_right = Image(400, 0, 'фон меню справа.jpg', -1, ALL_SPRITES)
